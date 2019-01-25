@@ -30,8 +30,11 @@ def custom_len(input_list):
         8
 
     """
+    len_counter = 0
+    for item in input_list: 
+        len_counter += 1
 
-    return 0
+    return len_counter
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -58,10 +61,9 @@ def custom_append(input_list, value):
         True
 
     """
-
-    pass
-
-
+    input_list[-1:] = [input_list[-1], value]
+    
+    
 def custom_extend(input_list, second_list):
     """Append every item in second_list to input_list.
 
@@ -77,8 +79,9 @@ def custom_extend(input_list, second_list):
         True
 
     """
-
-    pass
+    #print("before list:" , input_list)
+    input_list[-1:] = [input_list[-1]] + second_list
+    #print("after list:" , input_list)
 
 
 def custom_insert(input_list, index, value):
@@ -95,8 +98,9 @@ def custom_insert(input_list, index, value):
         True
 
     """
-
-    pass
+    #print('before: ', input_list)
+    input_list[index:] = [value] + input_list[index:]
+    #print('after: ', input_list)
 
 
 def custom_remove(input_list, value):
@@ -114,8 +118,19 @@ def custom_remove(input_list, value):
         True
 
     """
+    count_index = -1
+    
+    for item in input_list: 
+        count_index += 1
+        if item == value: 
+            break
 
-    pass
+    #print('before: ', input_list)
+    input_list[count_index:] = input_list[count_index+1:]
+    #print('after: ', input_list)
+    
+
+    
 
 
 def custom_pop(input_list):
@@ -133,8 +148,12 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    #print('before', input_list)
+    return_value = input_list[-1]
+    input_list[:] = input_list[:-1]
+    #print('after', input_list)
+    #custom_remove(input_list, input_list[-1])
+    return return_value
 
 
 def custom_index(input_list, value):
@@ -150,7 +169,14 @@ def custom_index(input_list, value):
 
     """
 
-    return 0
+    count_index = 0
+    
+    for item in input_list: 
+        if item == value: 
+            break
+        count_index += 1
+    
+    return count_index
 
 
 def custom_count(input_list, value):
@@ -165,8 +191,13 @@ def custom_count(input_list, value):
         2
 
     """
+    counter = 0
 
-    return 0
+    for item in input_list:
+        if item == value:
+            counter += 1
+
+    return counter
 
 
 def custom_reverse(input_list):
@@ -184,8 +215,8 @@ def custom_reverse(input_list):
         True
 
     """
+    input_list[:] = input_list[::-1]
 
-    pass
 
 
 def custom_contains(input_list, value):
@@ -204,8 +235,10 @@ def custom_contains(input_list, value):
         True
 
     """
-
-    return None
+    for item in input_list:
+        if item == value:
+            return True
+    return False
 
 
 def custom_equality(some_list, another_list):
@@ -223,8 +256,16 @@ def custom_equality(some_list, another_list):
         False
 
     """
+    counter_1 = 0 
 
-    return None
+    for item in some_list: 
+        if item == another_list[counter_1]: 
+            counter_1 += 1 
+            continue
+        else: 
+            return False
+
+    return True
 
 
 ##############################################################################
